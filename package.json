@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fegoworks/express-babel-setup-template.git"
+    "url": "git+https://github.com/fegoworks/essay-checker.git"
   },
   "author": "Edafe Oghenefego",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fegoworks/express-babel-setup-template/issues"
+    "url": "https://github.com/fegoworks/essay-checker/issues"
   },
-  "homepage": "https://github.com/fegoworks/express-babel-setup-template#readme",
+  "homepage": "https://github.com/fegoworks/essay-checker#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
