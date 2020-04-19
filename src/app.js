@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import env from 'dotenv';
+import userRoute from './routes/user.route';
 
 env.config();
 const port = process.env.PORT || 3000;
@@ -31,19 +32,19 @@ app.use(
 app.use(cookieParser());
 
 // Routes here
-
+app.use('/api/v1/', userRoute);
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Welcome to the ----- Application</h1>
+  res.send(`<h1>Welcome to the Essay Checker Application</h1>
   <h4>Please use PostMan and navigate to <code>/api/v1</code> to use the app</h4>
-  <p>For any more info please visit my <a href=''>Github</a> page</P>
+  <p>For any more info please visit my <a href='https://github.com/fegoworks/essay-checker'>Github</a> page</P>
   <h4>Thanks  &#x1F600;</h4>`);
 });
 
 app.all('*', (req, res) => {
   res.status(404).json({
     status: 'error',
-    message: 'you have entered an incorrect route',
+    message: 'You have entered an incorrect route',
   });
 });
 

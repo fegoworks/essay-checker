@@ -1,3 +1,5 @@
-# express-babel-setup-template
+<!-- @format -->
 
-Express-Babel-Setup - A simple express startoff template setup with babel, eslint, sequelize
+# Essay Checker
+
+A REST API based application to compare essay submissions for similarity.
