@@ -1,38 +1,30 @@
 module.exports = (Sequelize, DataTypes) => {
-  const Medication = Sequelize.define('Medication', {
+  const Report = Sequelize.define('Report', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       required: true,
       primaryKey: true
     },
-    name: {
+    studentOne: {
       type: DataTypes.STRING,
       required: true,
     },
-    dose: {
-      type: DataTypes.FLOAT,
-      required: true,
-    },
-    timesDaily: {
-      type: DataTypes.INTEGER,
-      required: true,
-    },
-    hoursInterval: {
-      type: DataTypes.INTEGER,
-      required: true,
-    },
-    start: {
-      type: DataTypes.DATE,
-      required: true,
-    },
-    finish: {
-      type: DataTypes.DATE,
-      required: true,
-    },
-    description: {
+    studentTwo: {
       type: DataTypes.STRING,
-      required: true
+      required: true,
+    },
+    firstFile: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    secondFile: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    grade: {
+      type: DataTypes.INTEGER,
+      required: true,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -43,13 +35,13 @@ module.exports = (Sequelize, DataTypes) => {
       required: true,
     }
   }, {});
-  Medication.associate = (models) => {
-    Medication.belongsTo(models.User, {
+  Report.associate = (models) => {
+    Report.belongsTo(models.User, {
       foreignKey: 'id',
       as: 'userId',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
   };
-  return Medication;
+  return Report;
 };
