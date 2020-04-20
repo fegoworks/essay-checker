@@ -6,23 +6,35 @@ module.exports = (Sequelize, DataTypes) => {
       required: true,
       primaryKey: true
     },
+    userId: {
+      type: DataTypes.UUID,
+      required: true,
+    },
     studentOne: {
       type: DataTypes.STRING,
       required: true,
+      validate: {
+        isAlpha: true,
+        notEmpty: true
+      }
     },
     studentTwo: {
       type: DataTypes.STRING,
       required: true,
+      validate: {
+        isAlpha: true,
+        notEmpty: true
+      }
     },
-    firstFile: {
+    textFileOne: {
       type: DataTypes.STRING,
       required: true,
     },
-    secondFile: {
+    textFileTwo: {
       type: DataTypes.STRING,
       required: true,
     },
-    grade: {
+    similarity: {
       type: DataTypes.INTEGER,
       required: true,
     },
@@ -37,8 +49,7 @@ module.exports = (Sequelize, DataTypes) => {
   }, {});
   Report.associate = (models) => {
     Report.belongsTo(models.User, {
-      foreignKey: 'id',
-      as: 'userId',
+      foreignKey: 'userId',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });

@@ -24,15 +24,15 @@ module.exports = {
       type: Sequelize.STRING,
       required: true,
     },
-    firstFile: {
+    textFileOne: {
       type: Sequelize.STRING,
       required: true,
     },
-    secondFile: {
+    textFileTwo: {
       type: Sequelize.STRING,
       required: true,
     },
-    grade: {
+    similarity: {
       type: Sequelize.INTEGER,
       required: true,
     },
