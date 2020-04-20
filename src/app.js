@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import env from 'dotenv';
 import userRoute from './routes/user.route';
+import reportRoute from './routes/report.route';
 
 env.config();
 const port = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
 // Routes here
 app.use('/api/v1/', userRoute);
+app.use('/api/v1/', reportRoute);
 
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome to the Essay Checker Application</h1>
