@@ -16,7 +16,7 @@ exports.uploads = (file, folder) => new Promise((resolve) => {
       id: result.public_id,
     });
   }, {
-    resource_type: 'auto',
+    resource_type: 'raw',
     folder,
   });
 });

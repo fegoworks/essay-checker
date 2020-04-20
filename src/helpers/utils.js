@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable import/prefer-default-export */
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -34,36 +35,40 @@ export const generateToken = (
   }
 );
 
+/**
+ * @param {object} res
+ * @param {string} data
+ * @param {integer} statusCode
+ * @return {object} data
+ */
 export const handleSuccessResponse = (res, data, statusCode = 200) => res.status(statusCode).json({
   status: 'success',
   data,
 });
 
+/**
+ * @param {object} res
+ * @param {string} error
+ * @param {integer} statusCode
+ * @return {object} data
+ */
 export const handleErrorResponse = (res, error, statusCode = 400) => res.status(statusCode).json({
   status: 'Request Failed',
   error,
 });
 
-export const checkAdmin = (isAdmin) => {
-  let value;
-  if (isAdmin === 'false') {
-    value = false;
-  } else if (isAdmin === 'true') {
-    value = true;
-  }
-  return value;
-};
-
+/**
+ * @param {string} file
+ * @return {object} url
+ */
 export const cloudLink = async (file) => {
   try {
     // Upload file to cloudinary
-    const uploader = (path) => cloud.uploads(path, 'files');
+    const uploader = (path) => cloud.uploads(path, 'essay');
     const {
       path,
     } = file;
     const url = await uploader(path);
-    fs.unlinkSync(path);
-
     return url;
   } catch (error) {
     return {
@@ -73,6 +78,10 @@ export const cloudLink = async (file) => {
   }
 };
 
+/**
+ * @param {string} fileId
+ * @return {object} result
+ */
 export const unLink = async (fileId) => {
   await cloudinary.uploader.destroy(fileId, (error, result) => {
     if (error) {
@@ -85,3 +94,40 @@ export const unLink = async (fileId) => {
     return result;
   });
 };
+
+/**
+ * @param {string} dir
+ * @return {object} temp
+ */
+export const getFiles = (dir) => {
+  const all = fs.readdirSync(dir);
+  const temp = [];
+
+  all.forEach((file) => {
+    const filePath = `${dir}/${file}`;
+    const data = fs.readFileSync(filePath, 'utf8');
+    temp.push(data);
+    fs.unlinkSync(filePath);
+  });
+
+  return temp;
+};
+
+/**
+ * @param {Array} files
+ * @return {Array} links
+ */
+export const getUrls = async (files) => {
+  const links = [];
+  for (const file of files) {
+    const link = await cloudLink(file);
+    links.push(link.url);
+  }
+  return links;
+};
+
+/**
+ * @param {float} val
+ * @return {integer} value
+ */
+export const getPercent = (val) => Math.ceil(val * 100);

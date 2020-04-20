@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
   if (
-    file.mimetype === 'file/text'
+    file.mimetype === 'text/plain'
   ) {
     cb(null, true);
   } else {

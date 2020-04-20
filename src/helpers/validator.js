@@ -4,12 +4,10 @@ const validator = {
   validateBody: (schema) => (req, res, next) => {
     const result = schema.validate(req.body);
     if (result.error) {
-      return res
-        .json({
-          status: 400,
-          error: result.error.message,
-        })
-        .status(400);
+      return res.status(400).json({
+        status: 400,
+        error: result.error.message,
+      });
     }
 
     req.body = result.value;
